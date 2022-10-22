@@ -17,6 +17,7 @@ const RouteSwitch = () => {
       <Route path="/profile" element={<Profile />} />
       <Route path="/new_post" element={<CreatePost />} />
       <Route path="/post/:postId" element={<SinglePost />} />
+      <Route element={<AllPosts />} />
     </Routes>
   );
 };
