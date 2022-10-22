@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 /* Pages */
 import AllPosts from "./components/pages/AllPosts";
@@ -17,7 +17,7 @@ const RouteSwitch = () => {
       <Route path="/profile" element={<Profile />} />
       <Route path="/new_post" element={<CreatePost />} />
       <Route path="/post/:postId" element={<SinglePost />} />
-      <Route element={<AllPosts />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 };

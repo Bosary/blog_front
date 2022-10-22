@@ -1,7 +1,11 @@
 import React from "react";
+import DOMPurify from "dompurify";
 
 export default function AllComments(props) {
   const comments = props.comments;
+  const sanitizedData = (data) => ({
+    __html: DOMPurify.sanitize(data),
+  });
 
   return (
     <div>
@@ -10,9 +14,16 @@ export default function AllComments(props) {
           return (
             <div className="comment" key={comment._id}>
               <div>
-                <h4>{comment.author.username}</h4>
+                <h4
+                  dangerouslySetInnerHTML={sanitizedData(
+                    comment.author.username
+                  )}
+                />
               </div>
-              <div className="content">{comment.content}</div>
+              <div
+                className="content"
+                dangerouslySetInnerHTML={sanitizedData(comment.content)}
+              />
             </div>
           );
         })}
