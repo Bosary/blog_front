@@ -11,7 +11,7 @@ export default function Post(props) {
     <div>
       <h2 dangerouslySetInnerHTML={sanitizedData(post.title)} />
 
-      <img src={post.imageUrl} alt="post body" width="700" height="500" />
+      <img src={post.imageUrl} alt="post body" />
 
       <p>Comments: {post.commentsCount}</p>
     </div>
