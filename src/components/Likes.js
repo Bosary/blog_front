@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import env from "react-dotenv";
 
 export default function Likes(props) {
   const likes = props.likes;
@@ -11,7 +12,7 @@ export default function Likes(props) {
     e.currentTarget.disabled = true;
     setCount(count + 1);
 
-    const url = `${window.env.API_URL}/posts/${postId}/like`;
+    const url = `${env.API_URL}/posts/${postId}/like`;
     await axios.put(url, postId);
   }
 

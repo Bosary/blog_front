@@ -9,6 +9,7 @@ import Post from "../Posts";
 import Likes from "../Likes";
 import CreateComment from "../CreateComment";
 import AllComments from "../AllComments";
+import env from "react-dotenv";
 
 export default function SinglePost() {
   const token = getToken();
@@ -22,7 +23,7 @@ export default function SinglePost() {
 
   useEffect(() => {
     async function getPost() {
-      const result = await axios.get(`${window.env.API_URL}/posts/${id}`);
+      const result = await axios.get(`${env.API_URL}/posts/${id}`);
       setPost(result.data.post);
       setComments(result.data.comments);
     }

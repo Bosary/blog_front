@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../utils/AuthProvider";
+import env from "react-dotenv";
 
 export default function Signup() {
   const { setUser } = useAuth();
@@ -14,11 +15,11 @@ export default function Signup() {
   const submit = async (e) => {
     e.preventDefault();
 
-    let url = `${window.env.API_URL}/users/signup`;
+    let url = `${env.API_URL}/users/signup`;
     let response = await axios.post(url, { username, password });
 
     // Login
-    url = `${window.env.API_URL}/users/login`;
+    url = `${env.API_URL}/users/login`;
     response = await axios.post(url, { username, password });
 
     const token = JSON.stringify(response.data.token);

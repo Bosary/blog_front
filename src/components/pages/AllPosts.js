@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import env from "react-dotenv";
 
 /* Components */
 import Author from "../Author";
@@ -12,7 +13,7 @@ export default function AllPosts() {
 
   useEffect(() => {
     async function getPosts() {
-      const result = await axios.get(`${window.env.API_URL}/posts/`);
+      const result = await axios.get(`${env.API_URL}/posts/`);
       setPosts(result.data.posts);
     }
     getPosts();

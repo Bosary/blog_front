@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import getToken from "../../utils/getToken";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import env from "react-dotenv";
 
 export default function CreatePost() {
   const token = getToken();
@@ -18,7 +19,7 @@ export default function CreatePost() {
     formData.append("image", file);
     formData.append("title", title);
 
-    const url = `${window.env.API_URL}/posts/new_post/`;
+    const url = `${env.API_URL}/posts/new_post/`;
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,

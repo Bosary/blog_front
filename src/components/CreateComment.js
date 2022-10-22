@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import getToken from "../utils/getToken";
+import env from "react-dotenv";
 
 export default function CreateComment(props) {
   const token = getToken();
@@ -13,7 +14,7 @@ export default function CreateComment(props) {
   const submit = async (e) => {
     e.preventDefault();
 
-    const url = `${window.env.API_URL}/posts/${postId}/new_comment`;
+    const url = `${env.API_URL}/posts/${postId}/new_comment`;
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,

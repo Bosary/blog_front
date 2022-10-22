@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../utils/AuthProvider";
+import env from "react-dotenv";
 
 export default function Login() {
   const { setUser } = useAuth();
@@ -15,7 +16,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const url = `${window.env.API_URL}/users/login`;
+      const url = `${env.API_URL}/users/login`;
       const response = await axios.post(url, { username, password });
 
       if (response.status === 200) {
