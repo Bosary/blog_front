@@ -66,6 +66,12 @@ label {
   padding: 0 8px;
 }
 
+img {
+  width: 600px;
+  height: 450px;
+  object-fit: cover;
+}
+
 body {
   /* background-color: var(--main-background); */
   max-width: 1200px;
@@ -93,6 +99,11 @@ header {
   align-items: center;
   gap: 20px;
   padding: 20px 24px;
+}
+
+header > img {
+  width: 100px;
+  height: 100px;
 }
 
 main {
@@ -225,3 +236,22 @@ nav > div {
   font-weight: 700;
 }
 
+/* Media queries */
+
+@media (max-width: 650px) {
+  img {
+    width: 400px;
+    height: 300px;
+    object-fit: cover;
+  }
+
+  * {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  nav > a,
+  nav > div {
+    font-size: 1.2rem;
+  }
+}
