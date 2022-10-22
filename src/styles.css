@@ -162,6 +162,10 @@ nav > div {
   font-size: 2rem;
 }
 
+.likes:disabled {
+  background-color: green;
+}
+
 
 /* single post page */
 
