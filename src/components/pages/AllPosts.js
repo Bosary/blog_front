@@ -19,19 +19,16 @@ export default function AllPosts() {
   }, []);
 
   return (
-    <div>
-      <div className="container">
-        {posts.map((post) => (
-          <div className="post" key={post._id}>
-            <Author name={post.author.username} />
-            <Link to={`post/${post._id}`} state={{ id: post._id }}>
-              <Post post={post} />
-            </Link>
-            <Likes likes={post.likes} postId={post._id} />
-            <p className="border"></p>
-          </div>
-        ))}
-      </div>
+    <div className="container">
+      {posts.map((post) => (
+        <div className="post" key={post._id}>
+          <Author name={post.author.username} />
+          <Link to={`post/${post._id}`} state={{ id: post._id }}>
+            <Post post={post} />
+          </Link>
+          <Likes likes={post.likes} postId={post._id} />
+        </div>
+      ))}
     </div>
   );
 }

@@ -31,7 +31,7 @@ export default function Login() {
   };
 
   return (
-    <form onSubmit={submit}>
+    <form className="login">
       <h2>Login</h2>
       <div>
         <label>Username:</label>
@@ -55,7 +55,7 @@ export default function Login() {
           minLength={3}
         />
       </div>
-      <button type="submit">Submit</button>
+      <button onClick={submit}>Log In</button>
     </form>
   );
 }

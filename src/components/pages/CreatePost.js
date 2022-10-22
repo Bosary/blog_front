@@ -38,7 +38,7 @@ export default function CreatePost() {
   };
 
   return (
-    <div className="createPost">
+    <div>
       {!token && (
         <p className="alert">
           You need to be logged in to create a new post. Please{" "}
@@ -55,7 +55,8 @@ export default function CreatePost() {
       )}
 
       {token && token !== "expired" && (
-        <form onSubmit={submit}>
+        <form className="new_post">
+          <h2>New Post</h2>
           <div>
             <label>Title:</label>
             <input
@@ -78,7 +79,7 @@ export default function CreatePost() {
             />
           </div>
 
-          <input type="submit" name="new post" />
+          <button onClick={submit}>Submit</button>
         </form>
       )}
     </div>
