@@ -214,7 +214,7 @@ nav > div {
   font-size: 1.2rem;
 }
 
-/* New posts, Signup, Login pages */
+/* New posts, Signup, Login pages forms*/
 
 .new_post, .signup, .login {
   display: flex;
@@ -257,5 +257,9 @@ nav > div {
 
   .likes {
     font-size: 1.4rem;
+  }
+
+  .new_post, .signup, .login  {
+    min-width: 300px;
   }
 }
