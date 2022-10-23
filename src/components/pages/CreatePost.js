@@ -70,7 +70,7 @@ export default function CreatePost() {
             />
           </div>
           <div>
-            <label>URL:</label>
+            <label>Image:</label>
             <input
               type="file"
               name="image"
