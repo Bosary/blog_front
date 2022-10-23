@@ -19,7 +19,7 @@ const RouteSwitch = () => {
       <Route path="/new_post" element={<CreatePost />} />
       <Route path="/post/:postId" element={<SinglePost />} />
       <Route path="/fail" element={<Fail />} />
-      <Route path="*" element={<Navigate to="/fail" replace />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 };
