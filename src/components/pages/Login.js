@@ -25,13 +25,16 @@ export default function Login() {
 
       // API call
       const url = `${env.API_URL}/users/login`;
-      const response = await axios.post(url, { username, password });
+      const response = await axios.post(url, {
+        username: username.toLowerCase(),
+        password,
+      });
 
       if (response.status === 200) {
         const token = JSON.stringify(response.data.token);
         localStorage.setItem("token", token);
 
-        setUser(username);
+        setUser(username.charAt(0).toUpperCase() + username.slice(1));
         navigate("/", { state: { message: "Login Successful" } });
       }
     } catch (errors) {

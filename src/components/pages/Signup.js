@@ -25,11 +25,17 @@ export default function Signup() {
 
       // API call
       let url = `${env.API_URL}/users/signup`;
-      let response = await axios.post(url, { username, password });
+      let response = await axios.post(url, {
+        username: username.toLowerCase(),
+        password,
+      });
 
       // Login
       url = `${env.API_URL}/users/login`;
-      response = await axios.post(url, { username, password });
+      response = await axios.post(url, {
+        username: username.toLowerCase(),
+        password,
+      });
 
       const token = JSON.stringify(response.data.token);
       localStorage.setItem("token", token);
