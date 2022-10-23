@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../utils/AuthProvider";
 
 export default function Dropdown() {
   const { user, setUser } = useAuth();
   const [open, setOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleOpen = () => {
     setOpen(!open);
@@ -13,7 +15,7 @@ export default function Dropdown() {
   const handleProfile = () => {
     setOpen(!open);
 
-    redirect("/profile");
+    navigate("/profile");
   };
 
   const handleLogout = () => {
@@ -22,7 +24,7 @@ export default function Dropdown() {
     localStorage.clear();
     setUser(null);
 
-    redirect("/");
+    navigate("/");
   };
 
   return (

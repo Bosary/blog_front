@@ -10,12 +10,20 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const [usernameError, setUsernameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
   const navigate = useNavigate();
 
   const submit = async (e) => {
     e.preventDefault();
 
     try {
+      // reset errors
+      setUsernameError("");
+      setPasswordError("");
+
+      // API call
       const url = `${env.API_URL}/users/login`;
       const response = await axios.post(url, { username, password });
 
@@ -26,8 +34,25 @@ export default function Login() {
         setUser(username);
         navigate("/", { state: { message: "Login Successful" } });
       }
-    } catch (error) {
-      console.log(error);
+    } catch (errors) {
+      const status = errors.response.status;
+
+      if (status === 400) {
+        handleErrors(errors.response.data);
+      } else {
+        navigate("/fail");
+      }
+    }
+  };
+
+  const handleErrors = (errors) => {
+    for (const error of errors) {
+      if (error.param === "username") {
+        setUsernameError(error.msg);
+      }
+      if (error.param === "password") {
+        setPasswordError(error.msg);
+      }
     }
   };
 
@@ -44,6 +69,7 @@ export default function Login() {
           required={true}
           minLength={1}
         />
+        {usernameError && <p className="error">*{usernameError}</p>}
       </div>
       <div>
         <label>Password:</label>
@@ -55,6 +81,7 @@ export default function Login() {
           required={true}
           minLength={3}
         />
+        {passwordError && <p className="error">*{passwordError}</p>}
       </div>
       <button onClick={submit}>Log In</button>
     </form>

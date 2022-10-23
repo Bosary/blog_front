@@ -12,6 +12,9 @@ export default function CreatePost() {
   const [file, setFile] = useState();
   const [title, setTitle] = useState("");
 
+  const [fileError, setFileError] = useState("");
+  const [titleError, setTitleError] = useState("");
+
   const submit = async (e) => {
     e.preventDefault();
 
@@ -19,18 +22,43 @@ export default function CreatePost() {
     formData.append("image", file);
     formData.append("title", title);
 
-    const url = `${env.API_URL}/posts/new_post/`;
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "multipart/form-data",
-      },
-      withCredentials: false,
-    };
+    try {
+      // reset errors
+      setFileError("");
+      setTitleError("");
 
-    await axios.post(url, formData, config);
+      // API call
+      const url = `${env.API_URL}/posts/new_post/`;
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+        withCredentials: false,
+      };
 
-    navigate("/");
+      await axios.post(url, formData, config);
+
+      navigate("/");
+    } catch (error) {
+      const status = error.response.status;
+      if (status === 400) {
+        handleError(error.response.data);
+      } else {
+        navigate("/fail");
+      }
+    }
+  };
+
+  const handleError = (errors) => {
+    for (const error of errors) {
+      if (error.param === "title") {
+        setTitleError(error.msg);
+      }
+      if (error.param === "file") {
+        setFileError(error.msg);
+      }
+    }
   };
 
   const fileSelected = (e) => {
@@ -65,9 +93,10 @@ export default function CreatePost() {
               name="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              required={true}
+              required
               minLength={1}
             />
+            {titleError && <p className="error">*{titleError}</p>}
           </div>
           <div>
             <label>Image:</label>
@@ -78,6 +107,7 @@ export default function CreatePost() {
               onChange={fileSelected}
               required={true}
             />
+            {fileError && <p className="error">*{fileError}</p>}
           </div>
 
           <button onClick={submit}>Submit</button>

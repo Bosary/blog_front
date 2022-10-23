@@ -10,24 +10,53 @@ export default function Signup() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const [usernameError, setUsernameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
   const navigate = useNavigate();
 
   const submit = async (e) => {
     e.preventDefault();
 
-    let url = `${env.API_URL}/users/signup`;
-    let response = await axios.post(url, { username, password });
+    try {
+      // reset errors
+      setUsernameError("");
+      setPasswordError("");
 
-    // Login
-    url = `${env.API_URL}/users/login`;
-    response = await axios.post(url, { username, password });
+      // API call
+      let url = `${env.API_URL}/users/signup`;
+      let response = await axios.post(url, { username, password });
 
-    const token = JSON.stringify(response.data.token);
-    localStorage.setItem("token", token);
+      // Login
+      url = `${env.API_URL}/users/login`;
+      response = await axios.post(url, { username, password });
 
-    setUser(username);
+      const token = JSON.stringify(response.data.token);
+      localStorage.setItem("token", token);
 
-    navigate("/", { state: { message: "SignUp Successful" } });
+      setUser(username);
+
+      navigate("/", { state: { message: "SignUp Successful" } });
+    } catch (errors) {
+      const status = errors.response.status;
+
+      if (status === 400) {
+        handleErrors(errors.response.data);
+      } else {
+        navigate("/fail");
+      }
+    }
+  };
+
+  const handleErrors = (errors) => {
+    for (const error of errors) {
+      if (error.param === "username") {
+        setUsernameError(error.msg);
+      }
+      if (error.param === "password") {
+        setPasswordError(error.msg);
+      }
+    }
   };
 
   return (
@@ -44,6 +73,7 @@ export default function Signup() {
             required={true}
             minLength={1}
           />
+          {usernameError && <p className="error">*{usernameError}</p>}
         </div>
         <div>
           <label>Password:</label>
@@ -55,7 +85,9 @@ export default function Signup() {
             required={true}
             minLength={3}
           />
+          {passwordError && <p className="error">*{passwordError}</p>}
         </div>
+
         <button onClick={submit}>Sign Up</button>
       </form>
     </div>
