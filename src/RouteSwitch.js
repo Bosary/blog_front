@@ -8,6 +8,7 @@ import Signup from "./components/pages/Signup";
 import Login from "./components/pages/Login";
 import Profile from "./components/pages/Profile";
 import Fail from "./components/pages/Fail";
+import Dev from "./components/pages/Dev";
 
 const RouteSwitch = () => {
   return (
@@ -19,6 +20,7 @@ const RouteSwitch = () => {
       <Route path="/new_post" element={<CreatePost />} />
       <Route path="/post/:postId" element={<SinglePost />} />
       <Route path="/fail" element={<Fail />} />
+      <Route path="/dev_notes" element={<Dev />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
