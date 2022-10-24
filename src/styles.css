@@ -244,6 +244,10 @@ nav > div {
   padding-top: 6px
 }
 
+.devNotes {
+  color: var(--main-text);
+}
+
 
 /* Media queries */
 
