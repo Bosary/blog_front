@@ -249,6 +249,11 @@ nav > div {
   padding-top: 6px
 }
 
+.loading {
+  color: var(--alert-text);
+  text-align: center;
+}
+
 .devNotes {
   color: var(--main-text);
 }
