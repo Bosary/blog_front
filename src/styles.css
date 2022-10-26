@@ -226,11 +226,21 @@ nav > div {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 16px;
+  gap: 18px;
   padding: 10px 0;
   margin-top: 5rem;
   font-size: 1.4rem;
   min-width: 700px;
+}
+
+.file_label {
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 2px;
+}
+
+.file_label:hover {
+  border: 2px solid blue;
 }
 
 /* Misc */
@@ -254,6 +264,9 @@ nav > div {
   text-align: center;
 }
 
+.hidden {
+  display: none;
+}
 .devNotes {
   color: var(--main-text);
 }

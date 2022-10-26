@@ -99,13 +99,17 @@ export default function CreatePost() {
             {titleError && <p className="error">*{titleError}</p>}
           </div>
           <div>
-            <label>Image:</label>
+            <label htmlFor="file" className="file_label">
+              Choose an image file
+            </label>
             <input
               type="file"
               name="image"
               accept="image/*"
               onChange={fileSelected}
               required={true}
+              className="hidden"
+              id="file"
             />
             {fileError && <p className="error">*{fileError}</p>}
           </div>
