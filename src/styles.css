@@ -5,6 +5,7 @@
   --main-text: #d1d5db;
   --sub-text: #9ca3af;
   --alert-text: #f51d3a;
+  --android-fix: #ffffffef;
 }
 
 /* HTML elements */
@@ -59,6 +60,10 @@ li > button {
 
 form {
   background-color: var(--form-background);
+}
+
+input, textarea {
+  background-color: var(--android-fix);
 }
 
 label {
