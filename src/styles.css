@@ -64,6 +64,7 @@ form {
 
 input, textarea {
   background-color: var(--android-fix);
+  box-shadow: none;
 }
 
 label {
