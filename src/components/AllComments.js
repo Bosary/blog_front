@@ -16,7 +16,8 @@ export default function AllComments(props) {
               <div>
                 <h4
                   dangerouslySetInnerHTML={sanitizedData(
-                    comment.author.username
+                    comment.author.username.charAt(0).toUpperCase() +
+                      comment.author.username.slice(1)
                   )}
                 />
               </div>

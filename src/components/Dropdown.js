@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../utils/AuthProvider";
+import { useName } from "../utils/NameProvider";
 
 export default function Dropdown() {
-  const { user, setUser } = useAuth();
+  const { user, setUser } = useName();
   const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();

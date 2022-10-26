@@ -5,15 +5,15 @@ import App from "./App";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import "./styles.css";
-import { AuthProvider } from "./utils/AuthProvider";
+import { NameProvider } from "./utils/NameProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <AuthProvider>
+  <NameProvider>
     <HashRouter>
       <Header />
       <App />
       <Footer />
     </HashRouter>
-  </AuthProvider>
+  </NameProvider>
 );

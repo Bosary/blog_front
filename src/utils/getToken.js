@@ -19,6 +19,7 @@ export default function getToken() {
     if (checkExpiration(userToken)) {
       return userToken;
     } else {
+      localStorage.clear();
       return "expired";
     }
   } else {

@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../utils/AuthProvider";
 import env from "react-dotenv";
+import { useName } from "../../utils/NameProvider";
 
 export default function Signup() {
-  const { setUser } = useAuth();
+  const { setUser } = useName();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -39,6 +39,8 @@ export default function Signup() {
 
       const token = JSON.stringify(response.data.token);
       localStorage.setItem("token", token);
+
+      localStorage.setItem("username", username);
 
       setUser(username);
 

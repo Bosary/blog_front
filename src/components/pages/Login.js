@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../utils/AuthProvider";
+import { useName } from "../../utils/NameProvider";
 import env from "react-dotenv";
 
 export default function Login() {
-  const { setUser } = useAuth();
+  const { setUser } = useName();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -33,11 +33,13 @@ export default function Login() {
       if (response.status === 200) {
         const token = JSON.stringify(response.data.token);
         localStorage.setItem("token", token);
+        localStorage.setItem("username", username);
 
-        setUser(username.charAt(0).toUpperCase() + username.slice(1));
+        setUser(username);
         navigate("/", { state: { message: "Login Successful" } });
       }
     } catch (errors) {
+      console.log(errors);
       const status = errors.response.status;
 
       if (status === 400) {

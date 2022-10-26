@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../utils/AuthProvider";
+import { useName } from "../utils/NameProvider";
 import Dropdown from "./Dropdown";
 
 export default function Navbar() {
-  const { user } = useAuth();
+  const { user } = useName();
 
   return (
     <nav>
